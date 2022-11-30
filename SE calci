@@ -135,3 +135,47 @@ operations={'ADD':add,'ADDITION':add,'SUM':add,'PLUS':add,
             'DIVISION': div, 'DIV': div, 'DIVIDE': div,
             'LCM':lcm , 'HCF':hcf,
             'MOD':mod ,'REMAINDER':mod , 'MODULUS':mod }
+
+def findNumbers(t):
+    l=[]
+    for num in t:
+        try:
+            l.append(int(num))
+        except ValueError:
+            pass
+    return l
+
+
+
+gui_root = Tk()
+gui_root.title('Smart Calculator')
+gui_root.config(bg='dodgerblue3')
+gui_root.geometry('800x800+30+30')
+
+logoLabel = Label(gui_root, bg='dodgerblue3')
+logoLabel.grid(row=0, column=0)
+
+entryField = Entry(gui_root, font=('arial', 20, 'bold'), bg='dodgerblue3', fg='white', bd=10, relief=SUNKEN, width=30)
+entryField.grid(row=0, column=0, columnspan=8)
+
+
+
+button_text_list = ["C", "AC", "√", "+", "π", "cosθ", "tanθ", "sinθ",
+                    "1", "2", "3", "-", "2π", "cosh", "tanh", "sinh",
+                    "4", "5", "6", "*", chr(8731), "x\u02b8", "x\u00B3", "x\u00B2",
+                    "7", "8", "9", chr(247), "ln", "deg", "rad", "e",
+                    "0", ".", "%", "=", "log₁₀", "(", ")", "x!"]
+rowvalue = 1
+columnvalue = 0
+for i in button_text_list:
+
+    button = Button(gui_root, width=5, height=2, bd=2, relief=SUNKEN, text=i, bg='dodgerblue3', fg='black',
+                    font=('arial', 16, 'bold'), activebackground='dodgerblue3', command=lambda button=i: on_click(button))
+    button.grid(row=rowvalue, column=columnvalue, pady=1)
+    columnvalue += 1
+    if columnvalue > 7:
+        rowvalue += 1
+        columnvalue = 0
+
+gui_root.mainloop()
+
